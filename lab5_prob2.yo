@@ -1,0 +1,21 @@
+0x000: 30f00300000000000000 | irmovq $3, %rax  # j = 3, rax
+0x00a: 30f10200000000000000 | irmovq $2, %rcx  # k = 2, rcx
+0x014: 30f20000000000000000 | irmovq $0, %rdx  # i = 0, rdx
+0x01e: 2023                 | rrmovq %rdx, %rbx # temp i, rbx
+0x020:                      | loop:
+0x020: 30f60500000000000000 |     irmovq $5, %rsi
+0x02a: 6126                 |     subq %rdx, %rsi  # 5 - i
+0x02c: 735600000000000000   |     je end    # if i = 5, go to end
+0x035: 6033                 |     addq %rbx, %rbx  #i * 2
+0x037: 2030                 |     rrmovq %rbx, %rax  # j = i * 2
+0x039: 2004                 |     rrmovq %rax, %rsp  # temp j
+0x03b: 30f50100000000000000 |     irmovq $1, %rbp   # 1
+0x045: 6054                 |     addq %rbp, %rsp   # j + 1
+0x047: 2041                 |     rrmovq %rsp, %rcx  # k = j + 1
+0x049: 6052                 |     addq %rbp, %rdx  # i++
+0x04b: 2023                 |     rrmovq %rdx, %rbx  #update temp i
+0x04d: 702000000000000000   |     jmp loop
+0x056:                      | end:
+                            | 
+                            |     
+                            | 

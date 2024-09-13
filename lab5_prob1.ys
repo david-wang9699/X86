@@ -1,0 +1,12 @@
+irmovq $6, %rax  # i = 6
+irmovq $10, %rdx   # j = 10
+rrmovq %rax, %rsi  #set i to a temp register to test
+subq %rdx, %rsi   # test i = j
+jg else           # if i > j, go to else
+irmovq $2, %rbx   # set 2 to a register
+addq %rbx, %rax   # i = i + 2
+jmp end
+else:
+    irmovq $1, %rax   # set i = 1
+    addq %rax, %rdx   # j++
+end:

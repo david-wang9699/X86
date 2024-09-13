@@ -1,0 +1,12 @@
+0x000: 30f00600000000000000 | irmovq $6, %rax  # i = 6
+0x00a: 30f20a00000000000000 | irmovq $10, %rdx   # j = 10
+0x014: 2006                 | rrmovq %rax, %rsi  #set i to a temp register to test
+0x016: 6126                 | subq %rdx, %rsi   # test i = j
+0x018: 763600000000000000   | jg else           # if i > j, go to else
+0x021: 30f30200000000000000 | irmovq $2, %rbx   # set 2 to a register
+0x02b: 6030                 | addq %rbx, %rax   # i = i + 2
+0x02d: 704200000000000000   | jmp end
+0x036:                      | else:
+0x036: 30f00100000000000000 |     irmovq $1, %rax   # set i = 1
+0x040: 6002                 |     addq %rax, %rdx   # j++
+0x042:                      | end:

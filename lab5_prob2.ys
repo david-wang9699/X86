@@ -1,0 +1,21 @@
+irmovq $3, %rax  # j = 3, rax
+irmovq $2, %rcx  # k = 2, rcx
+irmovq $0, %rdx  # i = 0, rdx
+rrmovq %rdx, %rbx # temp i, rbx
+loop:
+    irmovq $5, %rsi
+    subq %rdx, %rsi  # 5 - i
+    je end    # if i = 5, go to end
+    addq %rbx, %rbx  #i * 2
+    rrmovq %rbx, %rax  # j = i * 2
+    rrmovq %rax, %rsp  # temp j
+    irmovq $1, %rbp   # 1
+    addq %rbp, %rsp   # j + 1
+    rrmovq %rsp, %rcx  # k = j + 1
+    addq %rbp, %rdx  # i++
+    rrmovq %rdx, %rbx  #update temp i
+    jmp loop
+end:
+
+    
+
